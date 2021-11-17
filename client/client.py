@@ -1,3 +1,6 @@
+from src.connection import Connection
 
-if __name__=='__main__':
-    print('Hello client')
+
+if __name__ == '__main__':
+    conn = Connection()
+    conn.send("hello")

@@ -1,6 +1,8 @@
 reqs:
 	pip install -r requirements.txt
 
+all: ser cli
+
 cli: 
 ifeq ($(OS),Windows_NT) 
 	python ./client/client.py
