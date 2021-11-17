@@ -1,8 +1,19 @@
 reqs:
 	pip install -r requirements.txt
 
-client: 
-	python3 ./client/client.py
+cli: 
+ifeq ($(OS),Windows_NT) 
+	python ./client/client.py
+else
+	python3.9 ./client/client.py
+endif
+	
 
-server: 
-	python3 ./server/server.py
+ser: 
+ifeq ($(OS),Windows_NT) 
+	python ./server/server.py
+else
+	python ./server/server.py
+endif
+	
+	
