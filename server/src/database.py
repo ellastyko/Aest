@@ -1,43 +1,39 @@
 import sqlite3
-import glob, os
+import os
 
 
 class Database:
 
-    DB_PATH = 'db/aest.db'
-    TABLES_PATH = 'db/'
-    # SQL_SCRIPTS = glob.glob(f"{os.getcwd()}\\db\\*.sql")
+    DB_PATH = f'{os.getcwd()}/db/aest.db'
+    SQL_PATH = f'{os.getcwd()}/db/script.sql'
 
     def __init__(self) -> None:
+        pass
 
-        self.db = sqlite3.connect(self.PATH)
-        self.sql = self.db.cursor()
-
-
-    def query(self, query, all=False, first=False):
-
+    def connect(self):
         try:
-            self.sql.execute(query)
+            self.db = sqlite3.connect(self.DB_PATH)
         except:
-            self.db.rollback()
+            print("Unable to connect to database") 
         else:
-            self.db.commit()
-
-            if all is True:
-                return self.sql.fetchall()
-            elif first is True:
-                return self.sql.fetchone()
-            else:
-                return None
+            print('Connected')
+        
+        return self.db
 
 
     def migrations(self):
-        # TODO
-        pass
-        # for file in self.SQL_SCRIPTS:
-        #     sql_file = open(file)
-        #     sql_as_string = sql_file.read()
-        #     self.sql.executescript(sql_as_string)
+        self.sql = self.db.cursor()
+        try:
+            sql_file = open(self.SQL_PATH)
+            sql_as_string = sql_file.read()
+            print(sql_as_string)
+            self.sql.executescript(sql_as_string)
+        except:
+            print('Unable to make migrations')
+        else:
+            print('Migrations done')
+        self.sql.close()
+
         
     def __del__(self):
         self.sql.close()

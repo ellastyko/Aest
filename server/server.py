@@ -1,9 +1,15 @@
 
-from config import *
-
-
 from src.connection import Connection
 
-conn = Connection()
+Connection()
 
-print(conn.__PORT__)
+
+
+# db.query('CREATE TABLE users (id INTEGER PRIMARY KEY, login TEXT, password TEXT, name TEXT)')
+# db.query('SHOW DATABASES', all=True)
+
+class Server:
+
+
+    db = None
+    

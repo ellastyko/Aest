@@ -20,9 +20,8 @@ class Connection:
 
     def __listen(self):
         while True:
-            print(main_thread().is_alive())
-            # if main_thread().is_alive() is not True:
-            #     return 0
+            if main_thread().is_alive() is not True:
+                return 0
             data = self.__client.recv(1024)
             print(data.decode('utf-8')) 
     
