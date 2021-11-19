@@ -1,9 +1,9 @@
 reqs:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 all: ser cli
 
-cli: 
+cl: 
 ifeq ($(OS),Windows_NT) 
 	python ./client/client.py
 else
@@ -11,11 +11,11 @@ else
 endif
 	
 
-ser: 
+srv: 
 ifeq ($(OS),Windows_NT) 
 	python ./server/server.py
 else
-	python ./server/server.py
+	python3.9 ./server/server.py
 endif
 	
 	
