@@ -1,5 +1,6 @@
-from threading import  Thread, current_thread, main_thread
+from threading import  Thread, main_thread
 import socket
+
 from src.database import Database
 from src.controller import Controller
 from config import env
@@ -24,10 +25,10 @@ class Connection:
                 user.send(data.encode('utf-8'))
 
 
-        def __listening(self, client_socket, db):
+        def __listening(self, client_socket):
 
             print("Listening user...\n")
-            controller = Controller(db)
+            controller = Controller()
             while True:
 
                 if main_thread().is_alive() is not True:
@@ -45,13 +46,12 @@ class Connection:
 
         def __accept_sockets(self):
 
-            db = Database().connect()
-
+            db = Database().migrations()
             while True:
                 client_socket, client_address = self.server.accept()
-                print('Connected by', client_address)
+                print(f'Connected by {client_address}\n')
 
                 self.users.append(client_socket)
 
-                listen_accepted_user = Thread(target=self.__listening, args=(client_socket, db,))
+                listen_accepted_user = Thread(target=self.__listening, args=(client_socket,))
                 listen_accepted_user.start()

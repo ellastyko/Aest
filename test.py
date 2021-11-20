@@ -1,11 +1,15 @@
 
+dic = {"name" : "vadim", "age": 12, "age3": 12}
 
 
-from dotenv import dotenv_values
-config = dotenv_values(".env")
+class Test:
+
+    def func1(self):
+        return self
+    
+    def func2(self):
+        return 1
 
 
-def env(target = None):
-    return config[target] 
-
-print(env('PORT'))
+test = Test()
+test.func1().func2()

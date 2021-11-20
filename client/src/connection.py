@@ -3,7 +3,7 @@ from threading import Thread, main_thread, enumerate
 
 class Connection:
 
-    __PORT__ = 9080
+    __PORT__ = 9066
     __ADDR__ = 'localhost'
 
     def __init__(self):
