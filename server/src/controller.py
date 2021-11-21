@@ -8,15 +8,23 @@ class Controller:
 
     def controll(self, request : dict) -> dict:
 
-        self.query.insert('users', {
-            "login": 'ellastyko',
-            "password": 'fsdfsdf',
-            "key": "tokken" 
-        })
+        # self.query.create('users', {
+        #     "login": 'johmes',
+        #     "password": 'fsdfsdf',
+        #     "token": "tokken" 
+        # })
 
-        row = self.query.select('users', condition = {
+        # self.query.make('SELECT login, password FROM users WHERE login="johm";')
+        
+        self.query.update('users', {
+            'password' : 'PASSWORD'
+        }, {
             "id": 1
         })
 
-        # print(row)
+
+        row = self.query.select('users', ['id', 'login', 'password'], {
+            "login": "johm"
+        })
+        print(row.all())
 
