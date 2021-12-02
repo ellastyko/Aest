@@ -26,7 +26,7 @@ class Database:
 
             self.sql = self.db.cursor()
         except sqlite3.Error as error:
-            print(f"Unable to connect to database: {error}") 
+            print(f"Unable to connect to database: {error}!") 
         else:
             print('Connected')
 
@@ -40,7 +40,7 @@ class Database:
         except sqlite3.Error as error:
             print(f'Unable to make migrations:{error}')
         else:
-            print('Migrations done')
+            print('Migrations done!')
         self.db.commit()
 
     def __del__(self):

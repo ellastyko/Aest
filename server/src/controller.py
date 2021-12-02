@@ -1,4 +1,4 @@
-from src.query import Query
+
 
 
 class Controller:
@@ -14,17 +14,19 @@ class Controller:
         #     "token": "tokken" 
         # })
 
-        # self.query.make('SELECT login, password FROM users WHERE login="johm";')
+        # print(self.query.make('SELECT users FROM INFORMATION_SCHEMA.TABLES').first())
         
-        self.query.update('users', {
-            'password' : 'PASSWORD'
-        }, {
-            "id": 1
-        })
+        # self.query.update('users', {
+        #     'password' : 'PASSWORD'
+        # }, {
+        #     "id": 1
+        # })
 
 
-        row = self.query.select('users', ['id', 'login', 'password'], {
-            "login": "johm"
-        })
-        print(row.all())
+        # row = self.query.select('users', ['id', 'login', 'password'], {
+        #     "login": "johm"
+        # })
+
+        # variable = {key:val for key,val in row.all()}
+        # print(variable)
 

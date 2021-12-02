@@ -8,7 +8,7 @@ class Query(Database):
         Database.__init__(self)
 
     # Function with executing of 
-    def make(self, query) -> None:
+    def make(self, query) -> object:
 
         try:
             self.sql.execute(query)
@@ -16,6 +16,7 @@ class Query(Database):
             self.db.rollback()
         else:
             self.db.commit()
+            return self
 
 
     def limit(self) -> tuple: #TODO
