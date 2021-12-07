@@ -1,9 +1,10 @@
 import socket
 from threading import Thread, main_thread, enumerate
+import json 
 
 class Connection:
 
-    __PORT__ = 9062
+    __PORT__ = 9090
     __ADDR__ = 'localhost'
 
     def __init__(self):
@@ -28,7 +29,7 @@ class Connection:
 
     def send(self, request):
         try: 
-            self.__client.send(request.encode('utf-8')) 
+            self.__client.send(json.dumps(request).encode('utf-8')) 
         except Exception as e:
             print(f'Connection lost: {e}')
     

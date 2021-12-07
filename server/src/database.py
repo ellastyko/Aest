@@ -26,9 +26,9 @@ class Database:
 
             self.sql = self.db.cursor()
         except sqlite3.Error as error:
-            print(f"Unable to connect to database: {error}") 
+            print(f"Unable to connect to database: {error}! " + u'\u2032') 
         else:
-            print('Connected')
+            print('Connection with database established! ' + u'\u2705')
 
 
     def migrations(self):
@@ -38,13 +38,12 @@ class Database:
             sql_as_string = sql_file.read()
             self.sql.executescript(sql_as_string)
         except sqlite3.Error as error:
-            print(f'Unable to make migrations:{error}')
+            print(f'Unable to make migrations:{error} ' + u'\u2716')
         else:
-            print('Migrations done')
+            print('Migrations done! ' + u'\u2705') # u'\u2713')
         self.db.commit()
 
     def __del__(self):
-        print('Destruct!')
         self.db.close()
 
 

@@ -1,30 +1,33 @@
-from src.query import Query
 
+from config import env
+from src.email import Email
 
 class Controller:
 
     def __init__(self) -> None:
-        self.query = Query()
+        self.email = Email()
 
-    def controll(self, request : dict) -> dict:
-
-        # self.query.create('users', {
+    def __call__(self, request : dict) -> dict:
+        return { 'code' : 200 }
+         # self.query.create('users', {
         #     "login": 'johmes',
         #     "password": 'fsdfsdf',
         #     "token": "tokken" 
         # })
 
-        # self.query.make('SELECT login, password FROM users WHERE login="johm";')
+        # print(self.query.make('SELECT users FROM INFORMATION_SCHEMA.TABLES').first())
         
-        self.query.update('users', {
-            'password' : 'PASSWORD'
-        }, {
-            "id": 1
-        })
+        # self.query.update('users', {
+        #     'password' : 'PASSWORD'
+        # }, {
+        #     "id": 1
+        # })
 
 
-        row = self.query.select('users', ['id', 'login', 'password'], {
-            "login": "johm"
-        })
-        print(row.all())
+        # row = self.query.select('users', ['id', 'login', 'password'], {
+        #     "login": "johm"
+        # })
+
+        # variable = {key:val for key,val in row.all()}
+        # print(variable)
 
