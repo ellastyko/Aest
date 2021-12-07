@@ -1,10 +1,9 @@
 from threading import  Thread, main_thread
 import socket
 
-from src.database import Database
 from src.controller import Controller
 from config import env
-
+import json
 
 class Connection:
 
@@ -13,7 +12,7 @@ class Connection:
         def __init__(self):   
 
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
-            self.server.bind(('', env('PORT')))
+            self.server.bind(('', env('APP_PORT')))
             self.server.listen(10)
             print("Server listening...")
 
@@ -38,15 +37,20 @@ class Connection:
                 if not data:
                     print(f"User {client_socket} disconnected!")
                     break
+                
+                data = json.loads(data)
 
-                controller.controll(data)
+                # Handler
+                response = controller(data)
+                
+                # Send response
+                self.send(json.dumps(response))
 
             client_socket.close()
 
 
         def __accept_sockets(self):
 
-            db = Database().migrations()
             while True:
                 client_socket, client_address = self.server.accept()
                 print(f'Connected by {client_address}\n')

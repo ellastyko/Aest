@@ -1,14 +1,15 @@
 
-
+from config import env
+from src.email import Email
 
 class Controller:
 
     def __init__(self) -> None:
-        self.query = Query()
+        self.email = Email()
 
-    def controll(self, request : dict) -> dict:
-
-        # self.query.create('users', {
+    def __call__(self, request : dict) -> dict:
+        return { 'code' : 200 }
+         # self.query.create('users', {
         #     "login": 'johmes',
         #     "password": 'fsdfsdf',
         #     "token": "tokken" 
