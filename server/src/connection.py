@@ -31,7 +31,7 @@ class Connection:
             while True:
 
                 if main_thread().is_alive() is not True:
-                    return 0             
+                    break           
 
                 data = client_socket.recv(2048).decode('utf-8')
                 if not data:
@@ -42,7 +42,7 @@ class Connection:
 
                 # Handler
                 response = controller(data)
-                
+
                 # Send response
                 self.send(json.dumps(response))
 
@@ -57,5 +57,5 @@ class Connection:
 
                 self.users.append(client_socket)
 
-                listen_accepted_user = Thread(target=self.__listening, args=(client_socket,))
+                listen_accepted_user = Thread(target=self.__listening, args=(client_socket, ))
                 listen_accepted_user.start()

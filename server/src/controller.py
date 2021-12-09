@@ -9,6 +9,8 @@ class Controller:
 
     def __call__(self, request : dict) -> dict:
         return { 'code' : 200 }
+
+        # if request[''] ==:
          # self.query.create('users', {
         #     "login": 'johmes',
         #     "password": 'fsdfsdf',
