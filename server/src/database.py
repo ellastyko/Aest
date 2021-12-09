@@ -32,16 +32,32 @@ class Database:
 
 
     def migrations(self):
+        
+        if env('APP_ENV') == 'production':
+            
+            print('*** Application in production! ***')
+
+            while True:
+                response = input('Are you want to continue? (yes/no): ')
+                if response == 'no':
+                    print('Migrations stopped! ' + u'\u2716')
+                    return 0
+                elif response == 'yes':
+                    print('Migrations stopped! ' + u'\u2716')
+                    break
+                else:
+                    print('Invalid response!')
 
         try:
             sql_file = open(self.MIGRATIONS)
             sql_as_string = sql_file.read()
             self.sql.executescript(sql_as_string)
         except sqlite3.Error as error:
-            print(f'Unable to make migrations:{error} ' + u'\u2716')
+            print(f'Unable to make migrations: {error} ' + u'\u2716')
         else:
             print('Migrations done! ' + u'\u2705') # u'\u2713')
         self.db.commit()
+
 
     def __del__(self):
         self.db.close()
