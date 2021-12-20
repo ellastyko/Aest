@@ -9,7 +9,7 @@ class Connection:
 
         users = []
 
-        def __init__(self):   
+        def __init__(self) -> None:   
 
             self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM, proto=0)
             self.server.bind(('', env('APP_PORT')))
@@ -19,7 +19,7 @@ class Connection:
             self.__accept_sockets()
             
 
-        def send(self, data):
+        def send(self, data) -> None:
             for user in self.users:
                 user.send(data.encode('utf-8'))
 

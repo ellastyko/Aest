@@ -8,9 +8,12 @@ class Controller:
         self.email = Email()
 
     def __call__(self, request : dict) -> dict:
-        return { 'code' : 200 }
+        # return { 'code' : 200 }
 
-        # if request[''] ==:
+        if request['action'] == 'login':
+            pass
+        if request['action'] == 'login':
+            pass
          # self.query.create('users', {
         #     "login": 'johmes',
         #     "password": 'fsdfsdf',
